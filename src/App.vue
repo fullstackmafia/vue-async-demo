@@ -1,24 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <book></book>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import LoadingState from "./components/LoadingState"
+import ErrorState from "./components/ErrorState"
+const Book = import("./components/Book")
 export default {
-  name: 'app',
   components: {
-    HelloWorld
+    Book: () => ({
+      component: Book,
+      loading: LoadingState,
+      error: ErrorState,
+      delay: 100,
+      timeout: 2000
+    })
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
